@@ -12,7 +12,48 @@ $ cd cork
 $ ./sbt
 > container:start
 > ~ ;copy-resources;aux-compile
-> browse
 ```
+Open [http://localhost:8080/](http://localhost:8080/) in your browser.
 
-If `browse` doesn't launch your browser, manually open [http://localhost:8080/](http://localhost:8080/) in your browser.
+### Project structure: ###
+```sh
+.
+├── README.md
+├── project
+│   ├── build.properties
+│   ├── build.scala
+│   ├── plugins.sbt
+│   └── project
+├── sbt
+└── src
+    ├── main
+    │   ├── resources
+    │   │   └── logback.xml
+    │   ├── scala
+    │   │   ├── ScalatraBootstrap.scala
+    │   │   └── com
+    │   │       └── cork
+    │   │           ├── app
+    │   │           │   ├── CorkServlet.scala
+    │   │           │   ├── CorkStack.scala
+    │   │           │   ├── controllers
+    │   │           │   │   └── SmilesController.scala
+    │   │           │   └── models
+    │   │           │       └── Smiles.scala
+    │   │           └── config
+    │   │               └── DatabaseConnector.scala
+    │   └── webapp
+    │       └── WEB-INF
+    │           ├── templates
+    │           │   ├── layouts
+    │           │   │   └── default.jade
+    │           │   └── views
+    │           │       └── hello-scalate.jade
+    │           └── web.xml
+    └── test
+        └── scala
+            └── com
+                └── cork
+                    └── app
+                        └── CorkServletSpec.scala
+```
