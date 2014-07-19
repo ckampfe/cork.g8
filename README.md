@@ -7,13 +7,43 @@ $ git clone $REPO cork
 $ cd cork
 ```
 
-## Build it/run it ##
+## Build it ##
 ```
 $ ./sbt
 > container:start
 > ~ ;copy-resources;aux-compile
 ```
-Open [http://localhost:8080/](http://localhost:8080/) in your browser.
+
+## Use it ##
+
+```GET /smiles```
+```sh
+curl -X GET localhost:8080/smiles
+```
+
+```GET /smiles/1```
+```sh
+curl -X GET localhost:8080/smiles/1
+```
+
+```POST /smiles```
+```sh
+curl -X POST localhost:8080/smiles/1 \
+-d kind="smirk" \
+-d size="massive"
+```
+
+```PUT /smiles/1```
+```sh
+curl -X PUT localhost:8080/smiles/1 \
+-d kind="smirk" \
+-d size="tiny"
+```
+
+```DELETE /smiles/1```
+```sh
+curl -X DELETE localhost:8080/smiles/1 \
+```
 
 ### Project structure: ###
 ```sh
