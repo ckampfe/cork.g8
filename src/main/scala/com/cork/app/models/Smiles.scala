@@ -20,9 +20,9 @@ object Smiles extends SQLSyntaxSupport[Smiles] {
   }
   .map(
     rs => Map(
-      "id"   -> rs.long("id"),
-      "kind" -> rs.string("kind"),
-      "size" -> rs.string("size")
+      "id"   -> rs.long(s.resultName.id),
+      "kind" -> rs.string(s.resultName.kind),
+      "size" -> rs.string(s.resultName.size)
     )
   )
   .list()
@@ -34,9 +34,9 @@ object Smiles extends SQLSyntaxSupport[Smiles] {
   }
   .map(
     rs => Map(
-      "id"   -> rs.long("id"),
-      "kind" -> rs.string("kind"),
-      "size" -> rs.string("size")
+      "id"   -> rs.long(s.resultName.id),
+      "kind" -> rs.string(s.resultName.kind),
+      "size" -> rs.string(s.resultName.size)
     )
   )
   .single()
