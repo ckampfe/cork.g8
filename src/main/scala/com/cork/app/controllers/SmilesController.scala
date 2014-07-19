@@ -3,9 +3,8 @@ import org.scalatra._
 import org.json4s.{DefaultFormats, Formats}
 // JSON handling support from Scalatra
 import org.scalatra.json._
-import com.github.nscala_time.time.Imports._
 import scala.reflect.runtime.universe._
-import scalikejdbc._, SQLInterpolation._
+import com.github.nscala_time.time.Imports._
 
 
 class SmilesController extends ScalatraServlet with JacksonJsonSupport {
@@ -13,67 +12,34 @@ class SmilesController extends ScalatraServlet with JacksonJsonSupport {
   // the JValueResult trait.
   protected implicit val jsonFormats: Formats = DefaultFormats
 
-  implicit val session = AutoSession
-
   before() {
     contentType = formats("json")
   }
 
   /** ROUTES && ACTIONS */
 
-  get("/?") {
-    // show all smiles
-    val smiles: List[Map[String, Any]] = DB readOnly { implicit session =>
-      sql"SELECT * FROM smiles"
-        .map(
-          rs => Map(
-            "id"   -> rs.long("id"),
-            "kind" -> rs.string("kind"),
-            "size" -> rs.string("size")
-          )
-        )
-        .list()
-        .apply()
-    }
-
-    ResponseFormatter(smiles)
+  get("/?") { // show all smiles
+    val smilesCollection = Smiles.getAll
+    formatResponse(smilesCollection)
   }
 
-  get("/:id") {
-    // get a smile
-
-    val smile: Option[Map[String, Any]] = DB readOnly { implicit session =>
-      sql"SELECT * FROM smiles WHERE id = ${params("id")}"
-        .map(
-          rs => Map(
-            "id"   -> rs.long("id"),
-            "kind" -> rs.string("kind"),
-            "size" -> rs.string("size")
-          )
-        )
-        .single()
-        .apply()
-    }
-
-    ResponseFormatter(smile)
+  get("/:id") { // get a smile
+    val smile = Smiles.getOne(params("id"))
+    formatResponse(smile)
   }
 
-  post("/?") {
-    // create a smile
-
-    val dt = new DateTime
-    val smile = Smile(params("kind"), params("size"))
-
-    val objId = sql"""
-      INSERT INTO smiles (kind, size, created_at, updated_at)
-      VALUES (${smile.kind}, ${smile.size}, ${dt.toString()}, ${dt.toString()});
-    """.updateAndReturnGeneratedKey.apply()
+  post("/?") { // create a smile
+    Smiles.create(
+      params("kind"),
+      params("size")
+    )
 
     Created()
   }
 
   put("/:id") {
-    // update a smile
+    Smiles.update(params)
+    Ok()
   }
 
   delete(":id") {
@@ -83,7 +49,7 @@ class SmilesController extends ScalatraServlet with JacksonJsonSupport {
 
 
 // format responses into object-type, timestamp, and data
-object ResponseFormatter {
+object formatResponse {
   def apply[T: TypeTag](content: T) = {
     val dt = new DateTime
 
