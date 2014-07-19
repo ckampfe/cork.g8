@@ -42,7 +42,7 @@ curl -X PUT localhost:8080/smiles/1 \
 
 ```DELETE /smiles/1```
 ```sh
-curl -X DELETE localhost:8080/smiles/1 \
+curl -X DELETE localhost:8080/smiles/1
 ```
 
 ### Project structure: ###
