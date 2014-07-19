@@ -1,11 +1,17 @@
 # Cork #
 
-## Build & Run ##
+## Get it ##
 
 ```sh
-$ cd Cork
+$ git clone $REPO cork
+$ cd cork
+```
+
+## Build it/run it ##
+```
 $ ./sbt
 > container:start
+> ~ ;copy-resources;aux-compile
 > browse
 ```
 
