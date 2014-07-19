@@ -28,7 +28,7 @@ curl -X GET localhost:8080/smiles/1
 
 ```POST /smiles```
 ```sh
-curl -X POST localhost:8080/smiles/1 \
+curl -X POST localhost:8080/smiles \
 -d kind="smirk" \
 -d size="massive"
 ```
