@@ -14,6 +14,8 @@ $ ./sbt
 > ~ ;copy-resources;aux-compile
 ```
 
+You will also need to set up a MySQL database called `smiles`. Alternatively, you can opt to use the the H2 in-memory datastore, adjusting the code commenting in `com/cork/config/DatabaseConnector.scala`
+
 ## Use it ##
 
 ```GET /smiles```
@@ -44,6 +46,10 @@ curl -X PUT localhost:8080/smiles/1 \
 ```sh
 curl -X DELETE localhost:8080/smiles/1
 ```
+
+## Cork uses: ##
+- Scalatra
+- ScalikeJDBC
 
 ### Project structure: ###
 ```sh
