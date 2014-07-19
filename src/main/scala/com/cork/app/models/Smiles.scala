@@ -66,4 +66,10 @@ object Smiles extends SQLSyntaxSupport[Smiles] {
   }
   .update()
   .apply()
+
+  def destroy(id: Any): Unit = withSQL {
+    delete.from(Smiles).where.eq(Smiles.column.id, id)
+  }
+  .update
+  .apply()
 }

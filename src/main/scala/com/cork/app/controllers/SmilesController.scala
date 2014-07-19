@@ -29,21 +29,18 @@ class SmilesController extends ScalatraServlet with JacksonJsonSupport {
   }
 
   post("/?") { // create a smile
-    Smiles.create(
-      params("kind"),
-      params("size")
-    )
-
+    Smiles.create(params("kind"), params("size"))
     Created()
   }
 
-  put("/:id") {
+  put("/:id") { // update a smile
     Smiles.update(params)
     Ok()
   }
 
-  delete(":id") {
-    // delete a smile
+  delete("/:id") { // destroy a smile
+    Smiles.destroy(params("id"))
+    NoContent()
   }
 }
 
