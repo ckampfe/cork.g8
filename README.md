@@ -17,7 +17,8 @@ $ ./sbt
 You will also need to set up a MySQL database called `smiles`. Alternatively, you can opt to use the the H2 in-memory datastore, adjusting the code commenting in `com/cork/config/DatabaseConnector.scala`
 
 ## Use it ##
-Currently, you will have to write you API by hand. This is easy to do, and I've wired up the database and provided you with a fully-functional example CRUD API. To create your API:
+While a generator is planned, right now you will have to write your API by hand. This is easy to do, and I've wired up the database and provided you with a fully-functional example CRUD API to ease the pain.
+### Create your API: ###
 
 1. Add a controller and a corresponding model.
   - Controllers live in `com.cork.app.controllers` and look like the example`SmilesController.scala`
