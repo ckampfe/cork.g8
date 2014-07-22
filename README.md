@@ -17,11 +17,13 @@ $ ./sbt
 You will also need to set up a MySQL database called `smiles`. Alternatively, you can opt to use the the H2 in-memory datastore, adjusting the code commenting in `com/cork/config/DatabaseConnector.scala`
 
 ## Use it ##
-1. Add a controller and a corresponding model.
-  - Controllers look like `com.cork.app.controllers.SmilesController`
-  - Models look like `com.cork.app.models.Smiles`
+Currently, you will have to write you API by hand. This is easy to do, and I've wired up the database and provided you with a fully-functional example CRUD API. To create your API:
 
-2. Link up your enpoint in `scala.ScalatraBootstrap`
+1. Add a controller and a corresponding model.
+  - Controllers live in `com.cork.app.controllers` and look like the example`SmilesController.scala`
+  - Models live in `com.cork.app.models` and look like the example `Smiles.scala`
+
+2. Link up your enpoint in `ScalatraBootstrap.scala`
   - The example endpoint is `context.mount(new SmilesController, "/smiles/*")`. Easy.
 
 
