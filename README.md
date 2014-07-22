@@ -21,7 +21,7 @@ While a generator is planned, right now you will have to write your API by hand.
 ### Create your API: ###
 
 1. Add a controller and a corresponding model.
-  - Controllers live in `com.cork.app.controllers` and look like the example`SmilesController.scala`
+  - Controllers live in `com.cork.app.controllers` and look like the example `SmilesController.scala`
   - Models live in `com.cork.app.models` and look like the example `Smiles.scala`
 
 2. Link up your enpoint in `ScalatraBootstrap.scala`
