@@ -17,32 +17,45 @@ $ ./sbt
 You will also need to set up a MySQL database called `smiles`. Alternatively, you can opt to use the the H2 in-memory datastore, adjusting the code commenting in `com/cork/config/DatabaseConnector.scala`
 
 ## Use it ##
+1. Add a controller and a corresponding model.
+  - Controllers look like `com.cork.app.controllers.SmilesController`
+  - Models look like `com.cork.app.models.Smiles`
 
-```GET /smiles```
+2. Link up your enpoint in `scala.ScalatraBootstrap`
+  - The example endpoint is `context.mount(new SmilesController, "/smiles/*")`. Easy.
+
+
+I found it nice to put the database-accessing CRUD functions within model-objects. This helps keep your controllers tidy.
+
+## Sample API ##
+
+This is the sample API I have constructed to demo how easy it is to write CRUD operations using [ScalikeJDBC](http://scalikejdbc.org/). It's as you would expect.
+
+#### Get all smiles
 ```sh
 curl -X GET localhost:8080/smiles
 ```
 
-```GET /smiles/1```
+#### Get a smile
 ```sh
 curl -X GET localhost:8080/smiles/1
 ```
 
-```POST /smiles```
+#### Create a smile
 ```sh
 curl -X POST localhost:8080/smiles \
 -d kind="smirk" \
 -d size="massive"
 ```
 
-```PUT /smiles/1```
+#### Update a smile
 ```sh
 curl -X PUT localhost:8080/smiles/1 \
 -d kind="smirk" \
 -d size="tiny"
 ```
 
-```DELETE /smiles/1```
+#### Destroy a smile
 ```sh
 curl -X DELETE localhost:8080/smiles/1
 ```
