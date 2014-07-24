@@ -15,7 +15,8 @@ object CorkBuild extends Build {
   lazy val project = Project (
     "cork",
     file("."),
-    settings = Defaults.defaultSettings ++ ScalatraPlugin.scalatraWithJRebel ++ scalateSettings ++ Seq(
+    settings = Defaults.defaultSettings ++ ScalatraPlugin.scalatraWithJRebel ++
+    scalateSettings ++ Seq(giter8.ScaffoldPlugin.scaffoldSettings: _*) ++ Seq(
       organization := Organization,
       name := Name,
       version := Version,
