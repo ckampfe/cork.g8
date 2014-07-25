@@ -13,6 +13,7 @@ Then, create a new Cork project in your current directory with the `g8` command:
 ```sh
 $ g8 ckampfe/cork
 ```
+
 This grabs the latest Cork template and applies it locally.
 
 ## Use it ##
