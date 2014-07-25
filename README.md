@@ -90,8 +90,9 @@ curl -X DELETE localhost:8080/smiles/1
 ```
 
 ## Cork uses: ##
-- Scalatra
-- ScalikeJDBC
+- [Scalatra](http://scalatra.org/)
+- [ScalikeJDBC](http://scalikejdbc.org/)
+- [giter8](https://github.com/n8han/giter8)
 
 ### Project structure: ###
 ```sh
