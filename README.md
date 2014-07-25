@@ -1,8 +1,8 @@
 # Cork #
 
-Cork is a framework for easily building APIs in Scala, using Scalatra, ScalikeJDBC, and sbt, Jetty.
+Cork is a framework for easily building APIs in Scala, using [Scalatra](http://scalatra.org/), [ScalikeJDBC](http://scalikejdbc.org/), and [Jetty](http://www.eclipse.org/jetty/).
 
-## Getting started ##
+## Installation ##
 
 Cork is a [giter8](https://github.com/n8han/giter8) template, so you need to have it installed:
 
@@ -14,10 +14,6 @@ Then, create a new Cork project in your current directory with the `g8` command.
 ```sh
 $ g8 ckampfe/cork
 ```
-
-
-## Build it ##
-
 
 ## Use it ##
 
@@ -35,9 +31,10 @@ In the sbt console, compile your project and start the servlet. The last line wi
 > ~ ;copy-resources;aux-compile
 ```
 
-To use the example API, you will also need to set up a MySQL database called `smiles`. Alternatively, you can opt to use the the H2 in-memory datastore, adjusting the code commenting in `com/cork/config/DatabaseConnector.scala`.
 
 ### Create your API ###
+
+#### Using the generator ####
 
 ```
 > g8-scaffold api
@@ -45,9 +42,11 @@ To use the example API, you will also need to set up a MySQL database called `sm
 
 Follow the prompts, and, you should have a new CRUD API model and controller.
 Make sure to hook up your API in `ScalatraBootstrap.scala` like this:
-`context.mount(new SmilesController, "/smiles/*")`.
+`context.mount(new SmilesController, "/smiles/*")` and to create the appropriate tables in your database.
 
-You can also create an API manually.
+#### Manually ####
+
+You can also create an API manually. To create an API by hand:
 
 1. Add a controller and a corresponding model.
   - Controllers live in `com.cork.app.controllers` and look like the example `SmilesController.scala`
@@ -56,12 +55,11 @@ You can also create an API manually.
 2. Link up your enpoint in `ScalatraBootstrap.scala`
   - The example endpoint is `context.mount(new SmilesController, "/smiles/*")`. Easy.
 
+An example API is included that was created in this manner. 
 
-I found it nice to put the database-accessing CRUD functions within model-objects. This helps keep your controllers tidy.
+## Included enpoints ##
 
-## Sample API ##
-
-This is the sample API I have constructed to demo how easy it is to write CRUD operations using [ScalikeJDBC](http://scalikejdbc.org/). It's as you would expect.
+The interface for generated APIs (as well as the included API) is as you would expect:
 
 #### Get all smiles
 ```sh
@@ -92,7 +90,4 @@ curl -X PUT localhost:8080/smiles/1 \
 curl -X DELETE localhost:8080/smiles/1
 ```
 
-## Cork uses: ##
-- [Scalatra](http://scalatra.org/)
-- [ScalikeJDBC](http://scalikejdbc.org/)
-- [giter8](https://github.com/n8han/giter8)
+Note: To use the example API, you will also need to set up a MySQL database called `smiles`. Alternatively, you can opt to use the the H2 in-memory datastore, adjusting the code commenting in `com/cork/config/DatabaseConnector.scala`.
