@@ -9,11 +9,11 @@ Cork is a [giter8](https://github.com/n8han/giter8) template, so you need to hav
 ```
 $ brew update && brew install giter8
 ```
-Then, create a new Cork project in your current directory with the `g8` command. This grabs the latest Cork template and applies it locally:
-
+Then, create a new Cork project in your current directory with the `g8` command:
 ```sh
 $ g8 ckampfe/cork
 ```
+This grabs the latest Cork template and applies it locally.
 
 ## Use it ##
 
