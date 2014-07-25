@@ -1,5 +1,6 @@
 # Cork #
 
+Cork is a framework for easily building APIs in Scala, using Scalatra, ScalikeJDBC, and sbt, Jetty.
 
 ## Getting started ##
 
@@ -8,31 +9,33 @@ Cork is a [giter8](https://github.com/n8han/giter8) template, so you need to hav
 ```
 $ brew update && brew install giter8
 ```
-Then, create a new Cork project in your current directory:
+Then, create a new Cork project in your current directory with the `g8` command. This grabs the latest Cork template and applies it locally:
 
-```
+```sh
 $ g8 ckampfe/cork
 ```
 
-## Build it ##
-Your new Cork project uses Scala's sbt. Give it the permissions it needs and build your project:
 
-```
+## Build it ##
+
+
+## Use it ##
+
+Your new Cork project uses Scala's sbt. Before we do anything we have to give sbt the permissions it needs and build your project and start the sbt console:
+
+```sh
 $ chmod +ux sbt
 $ ./sbt
 ```
 
-## Use it ##
-In the sbt console, you can compile your project and start the servlet. Note the last line enables the automatic compilation watcher.
+In the sbt console, compile your project and start the servlet. The last line will watch your project, automatically recompiling code and restarting the servlet when you save changes:
 
 ```
 > container:start
 > ~ ;copy-resources;aux-compile
 ```
 
-You will also need to set up a MySQL database called `smiles`. Alternatively, you can opt to use the the H2 in-memory datastore, adjusting the code commenting in `com/cork/config/DatabaseConnector.scala`
-
-
+To use the example API, you will also need to set up a MySQL database called `smiles`. Alternatively, you can opt to use the the H2 in-memory datastore, adjusting the code commenting in `com/cork/config/DatabaseConnector.scala`.
 
 ### Create your API ###
 
@@ -93,46 +96,3 @@ curl -X DELETE localhost:8080/smiles/1
 - [Scalatra](http://scalatra.org/)
 - [ScalikeJDBC](http://scalikejdbc.org/)
 - [giter8](https://github.com/n8han/giter8)
-
-### Project structure: ###
-```sh
-.
-├── README.md
-├── project
-│   ├── build.properties
-│   ├── build.scala
-│   ├── plugins.sbt
-│   └── project
-├── sbt
-└── src
-    ├── main
-    │   ├── resources
-    │   │   └── logback.xml
-    │   ├── scala
-    │   │   ├── ScalatraBootstrap.scala
-    │   │   └── com
-    │   │       └── cork
-    │   │           ├── app
-    │   │           │   ├── CorkServlet.scala
-    │   │           │   ├── CorkStack.scala
-    │   │           │   ├── controllers
-    │   │           │   │   └── SmilesController.scala
-    │   │           │   └── models
-    │   │           │       └── Smiles.scala
-    │   │           └── config
-    │   │               └── DatabaseConnector.scala
-    │   └── webapp
-    │       └── WEB-INF
-    │           ├── templates
-    │           │   ├── layouts
-    │           │   │   └── default.jade
-    │           │   └── views
-    │           │       └── hello-scalate.jade
-    │           └── web.xml
-    └── test
-        └── scala
-            └── com
-                └── cork
-                    └── app
-                        └── CorkServletSpec.scala
-```
