@@ -3,7 +3,7 @@ import scalikejdbc._, SQLInterpolation._
 import com.github.nscala_time.time.Imports._
 
 
-case class Smiles(
+case class $api_name;format="Camel"$s(
   id: Int,
   kind: Option[String],
   size: Option[String],
@@ -11,12 +11,12 @@ case class Smiles(
   updatedAt: DateTime
 )
 
-object Smiles extends SQLSyntaxSupport[Smiles] {
+object $api_name;format="Camel"$s extends SQLSyntaxSupport[$api_name;format="Camel"$s] {
   implicit val session = AutoSession
-  val s = Smiles.syntax("s")
+  val s = $api_name;format="Camel"$s.syntax("s")
 
   def getAll: List[Map[String, Any]] = withSQL {
-    select.from(Smiles as s)
+    select.from($api_name;format="Camel"$s as s)
   }
   .map(
     rs => Map(
@@ -29,7 +29,7 @@ object Smiles extends SQLSyntaxSupport[Smiles] {
   .apply()
 
   def getOne(id: Any): Option[Map[String, Any]] = withSQL {
-    select.from(Smiles as s)
+    select.from($api_name;format="Camel"$s as s)
       .where.eq(s.id, id)
   }
   .map(
@@ -43,9 +43,9 @@ object Smiles extends SQLSyntaxSupport[Smiles] {
   .apply()
 
   def create(kind: String, size: String) = withSQL {
-    val c = Smiles.column
+    val c = $api_name;format="Camel"$s.column
     insert
-      .into(Smiles)
+      .into($api_name;format="Camel"$s)
       .namedValues(
         c.kind      -> kind,
         c.size      -> size,
@@ -57,18 +57,18 @@ object Smiles extends SQLSyntaxSupport[Smiles] {
   .apply()
 
   def update(params: Map[String, String]) = withSQL {
-    val c = Smiles.column
-    QueryDSL.update(Smiles).set(
+    val c = $api_name;format="Camel"$s.column
+    QueryDSL.update($api_name;format="Camel"$s).set(
       c.kind      -> params("kind"),
       c.size      -> params("size"),
       c.updatedAt -> DateTime.now
-    ).where.eq(Smiles.column.id, params("id"))
+    ).where.eq($api_name;format="Camel"$s.column.id, params("id"))
   }
   .update()
   .apply()
 
   def destroy(id: Any): Unit = withSQL {
-    delete.from(Smiles).where.eq(Smiles.column.id, id)
+    delete.from($api_name;format="Camel"$s).where.eq($api_name;format="Camel"$s.column.id, id)
   }
   .update
   .apply()
