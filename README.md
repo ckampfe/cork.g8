@@ -42,13 +42,13 @@ In the sbt console, compile your project and start the servlet. The last line wi
 > g8-scaffold api
 ```
 
-Follow the prompts, and, you should have a new CRUD API model and controller.
+Follow the prompts, and marvel at your new CRUD API model and controller.
 Make sure to hook up your API in `ScalatraBootstrap.scala` like this:
 `context.mount(new SmilesController, "/smiles/*")` and to create the appropriate tables in your database.
 
 ## Included enpoints ##
 
-The interface for generated APIs (as well as the included API) is as you would expect:
+The interface for generated APIs (as well as the included example API) is as you would expect:
 
 #### Get all smiles
 ```sh
