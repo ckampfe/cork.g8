@@ -42,7 +42,7 @@ In the sbt console, compile your project and start the servlet. The last line wi
 
 Follow the prompts, and marvel at your new CRUD API model and controller.
 Make sure to hook up your API in `ScalatraBootstrap.scala` like this:
-`context.mount(new SmilesController, "/smiles/*")` and to create the appropriate tables in your database.
+`context.mount(new SmilesController(system), "/smiles/*")` and to create the appropriate tables in your database.
 
 ## Included enpoints ##
 
