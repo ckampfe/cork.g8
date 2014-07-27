@@ -1,4 +1,4 @@
-package com.cork.app
+package $package$
 
 import org.scalatra._
 import scalate.ScalateSupport
@@ -7,7 +7,7 @@ import org.fusesource.scalate.layout.DefaultLayoutStrategy
 import javax.servlet.http.HttpServletRequest
 import collection.mutable
 
-trait CorkStack extends ScalatraServlet with ScalateSupport {
+trait $name;format="Camel"$Stack extends ScalatraServlet with ScalateSupport {
 
   /* wire up the precompiled templates */
   override protected def defaultTemplatePath: List[String] = List("/WEB-INF/templates/views")

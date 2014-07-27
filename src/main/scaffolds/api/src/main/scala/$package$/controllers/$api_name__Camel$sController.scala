@@ -6,11 +6,23 @@ import org.scalatra.json._
 import scala.reflect.runtime.universe._
 import com.github.nscala_time.time.Imports._
 
+// Futures with Akka
+import _root_.akka.dispatch._
+import _root_.akka.actor.ActorSystem
+import org.scalatra.FutureSupport
+import scala.concurrent.{ExecutionContext, Future, Promise}
 
-class $api_name;format="Camel"$sController extends ScalatraServlet with JacksonJsonSupport {
+
+class $api_name;format="Camel"$sController(system: ActorSystem)
+  extends ScalatraServlet
+  with JacksonJsonSupport
+  with FutureSupport {
   // Sets up automatic case class to JSON output serialization, required by
   // the JValueResult trait.
   protected implicit val jsonFormats: Formats = DefaultFormats
+
+  // set the execution context for actors
+  protected implicit def executor: ExecutionContext = system.dispatcher
 
   before() {
     contentType = formats("json")
@@ -19,28 +31,48 @@ class $api_name;format="Camel"$sController extends ScalatraServlet with JacksonJ
   /** ROUTES && ACTIONS */
 
   get("/?") { // show all $api_name;format="Camel"$s
-    val $api_name;format="camel"$sCollection = $api_name$s.getAll
-    formatResponse($api_name;format="camel"$sCollection)
+    new AsyncResult { val is =
+      Future {
+        val $api_name;format="camel"$sCollection = $api_name$s.getAll
+        formatResponse($api_name;format="camel"$sCollection)
+      }
+    }
   }
 
   get("/:id") { // get a $api_name;format="lower"$
-    val $api_name;format="camel"$ = $api_name$s.getOne(params("id"))
-    formatResponse($api_name;format="camel"$)
+    new AsyncResult { val is =
+      Future {
+        val $api_name;format="camel"$ = $api_name$s.getOne(params("id"))
+        formatResponse($api_name;format="camel"$)
+      }
+    }
   }
 
   post("/?") { // create a $api_name;format="lower"$
-    $api_name$s.create(params("kind"), params("size"))
-    Created()
+    new AsyncResult { val is =
+      Future {
+        $api_name$s.create(params("kind"), params("size"))
+        Created()
+      }
+    }
   }
 
   put("/:id") { // update a $api_name;format="lower"$
-    $api_name$s.update(params)
-    Ok()
+    new AsyncResult { val is =
+      Future {
+        $api_name$s.update(params)
+        Ok()
+      }
+    }
   }
 
   delete("/:id") { // destroy a $api_name;format="lower"$
-    $api_name$s.destroy(params("id"))
-    NoContent()
+    new AsyncResult { val is =
+      Future {
+        $api_name$s.destroy(params("id"))
+        NoContent()
+      }
+    }
   }
 
   // format responses into object-type, timestamp, and data

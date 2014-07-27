@@ -6,6 +6,10 @@ import org.scalatra.json._
 import scala.reflect.runtime.universe._
 import com.github.nscala_time.time.Imports._
 
+// Futures with Akka
+import _root_.akka.dispatch._
+import org.scalatra.FutureSupport
+
 
 class SmilesController extends ScalatraServlet with JacksonJsonSupport {
   // Sets up automatic case class to JSON output serialization, required by
