@@ -36,8 +36,6 @@ In the sbt console, compile your project and start the servlet. The last line wi
 
 ### Create your API ###
 
-#### Using the generator ####
-
 ```
 > g8-scaffold api
 ```
