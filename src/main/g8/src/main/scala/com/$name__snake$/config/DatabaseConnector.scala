@@ -1,4 +1,4 @@
-package com.cork.config
+package com.$name;format="snake"$.config
 
 import scalikejdbc._
 
