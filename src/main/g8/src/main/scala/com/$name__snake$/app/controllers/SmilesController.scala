@@ -8,10 +8,14 @@ import com.github.nscala_time.time.Imports._
 
 // Futures with Akka
 import _root_.akka.dispatch._
+import _root_.akka.actor.ActorSystem
 import org.scalatra.FutureSupport
+import scala.concurrent.{ExecutionContext, Future, Promise}
 
 
-class SmilesController extends ScalatraServlet with JacksonJsonSupport {
+class SmilesController(system: ActorSystem)
+  extends ScalatraServlet
+  with JacksonJsonSupport {
   // Sets up automatic case class to JSON output serialization, required by
   // the JValueResult trait.
   protected implicit val jsonFormats: Formats = DefaultFormats
