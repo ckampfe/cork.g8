@@ -1,4 +1,3 @@
-// package com.cork.app
 package $package$
 
 import org.scalatra._
