@@ -6,22 +6,24 @@ import com.mojolly.scalate.ScalatePlugin._
 import ScalateKeys._
 
 object CorkBuild extends Build {
-  val Organization = "$organization$"
-  val Name = "$name$"
-  val Version = "$version$"
-  val ScalaVersion = "$scala_version$"
+  val Organization    = "$organization$"
+  val Name            = "$name$"
+  val Version         = "$version$"
+  val ScalaVersion    = "$scala_version$"
   val ScalatraVersion = "$scalatra_version$"
 
   lazy val project = Project (
-    "cork",
+    "$name;format="snake"$",
     file("."),
-    settings = Defaults.defaultSettings ++ ScalatraPlugin.scalatraWithJRebel ++
-    scalateSettings ++ Seq(giter8.ScaffoldPlugin.scaffoldSettings: _*) ++ Seq(
+    settings = Defaults.defaultSettings ++
+    ScalatraPlugin.scalatraWithJRebel ++
+    Seq(giter8.ScaffoldPlugin.scaffoldSettings: _*) ++
+    Seq(
       organization := Organization,
-      name := Name,
-      version := Version,
+      name         := Name,
+      version      := Version,
       scalaVersion := ScalaVersion,
-      resolvers += Classpaths.typesafeReleases,
+      resolvers    += Classpaths.typesafeReleases,
       libraryDependencies ++= Seq(
         "org.scalatra"            %% "scalatra"             % ScalatraVersion,
         "org.scalatra"            %% "scalatra-scalate"     % ScalatraVersion,
