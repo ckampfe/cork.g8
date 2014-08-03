@@ -1,6 +1,6 @@
 # Cork #
 
-Cork is a framework for easily building APIs in Scala, using [Scalatra](http://scalatra.org/), [ScalikeJDBC](http://scalikejdbc.org/), [HikariCP](https://github.com/brettwooldridge/HikariCP) and [Jetty](http://www.eclipse.org/jetty/).
+Cork is a framework for easily building APIs in Scala, using [Scalatra](http://scalatra.org/), [ScalikeJDBC](http://scalikejdbc.org/), [HikariCP](http://brettwooldridge.github.io/HikariCP/) and [Jetty](http://www.eclipse.org/jetty/).
 
 ## Installation ##
 
