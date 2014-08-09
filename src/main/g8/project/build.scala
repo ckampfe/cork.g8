@@ -14,7 +14,7 @@ object CorkBuild extends Build {
   val ScalatraVersion = "$scalatra_version$"
 
   lazy val project = Project (
-    "cork",
+    "$name;format="snake"$",
     file("."),
     settings = Defaults.defaultSettings ++
     ScalatraPlugin.scalatraWithJRebel ++

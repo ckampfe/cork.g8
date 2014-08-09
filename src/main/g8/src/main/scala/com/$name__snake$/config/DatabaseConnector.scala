@@ -7,7 +7,7 @@ import com.zaxxer.hikari._
 trait DatabaseConnector {
   // set up HikariCP connection pool
   val dataSource: DataSource = {
-    val ds       = new HikariDataSource()
+    val ds = new HikariDataSource()
     val dataSourceClassName = "com.mysql.jdbc.jdbc2.optional.MysqlDataSource"
 
     // https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing
