@@ -26,7 +26,7 @@ object CorkBuild extends Build {
       version      := Version,
       scalaVersion := ScalaVersion,
       resolvers    += Classpaths.typesafeReleases,
-      flywayUrl    := "jdbc:mysql://localhost:3306/scalatra_test",
+      flywayUrl    := "jdbc:mysql://localhost:3306/$name;format="snake"$_development",
       flywayUser   := "root",
       libraryDependencies ++= Seq(
         "org.scalatra"            %% "scalatra"             % ScalatraVersion,

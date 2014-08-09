@@ -14,7 +14,7 @@ trait DatabaseConnector {
     ds.setMaximumPoolSize(12)
     ds.setDataSourceClassName(dataSourceClassName)
     ds.addDataSourceProperty("serverName", "localhost")
-    ds.addDataSourceProperty("databaseName", "scalatra_test")
+    ds.addDataSourceProperty("databaseName", "$name;format="snake"$_development")
     ds.addDataSourceProperty("port", "3306")
     ds.addDataSourceProperty("user", "root")
     ds.addDataSourceProperty("password", "")
