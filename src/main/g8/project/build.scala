@@ -21,13 +21,14 @@ object CorkBuild extends Build {
     Seq(giter8.ScaffoldPlugin.scaffoldSettings: _*) ++
     seq(org.flywaydb.sbt.FlywayPlugin.flywaySettings: _*) ++
     Seq(
-      organization := Organization,
-      name         := Name,
-      version      := Version,
-      scalaVersion := ScalaVersion,
-      resolvers    += Classpaths.typesafeReleases,
-      flywayUrl    := "jdbc:mysql://localhost:3306/$name;format="snake"$_development",
-      flywayUser   := "root",
+      organization     := Organization,
+      name             := Name,
+      version          := Version,
+      scalaVersion     := ScalaVersion,
+      resolvers        += Classpaths.typesafeReleases,
+      flywayUrl        := "jdbc:mysql://localhost:3306/$name;format="snake"$_development",
+      flywayUser       := "root",
+      flywayPassword   := "",
       libraryDependencies ++= Seq(
         "org.scalatra"            %% "scalatra"             % ScalatraVersion,
         "org.scalatra"            %% "scalatra-scalate"     % ScalatraVersion,
