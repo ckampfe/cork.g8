@@ -5,8 +5,8 @@ import com.github.nscala_time.time.Imports._
 
 case class $api_name;format="Camel"$s(
   id: Int,
-  kind: Option[String],
-  size: Option[String],
+  kind: String,
+  size: String,
   createdAt: DateTime,
   updatedAt: DateTime
 )

@@ -1,4 +1,4 @@
-package com.cork.app
+package $package$
 
 import org.scalatra.test.specs2._
 

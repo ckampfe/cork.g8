@@ -3,9 +3,10 @@ import Keys._
 import org.scalatra.sbt._
 import org.scalatra.sbt.PluginKeys._
 import com.mojolly.scalate.ScalatePlugin._
+import org.flywaydb.sbt.FlywayPlugin._
 import ScalateKeys._
 
-object CorkBuild extends Build {
+object $name;format="Camel"$Build extends Build {
   val Organization    = "$organization$"
   val Name            = "$name$"
   val Version         = "$version$"
@@ -18,12 +19,16 @@ object CorkBuild extends Build {
     settings = Defaults.defaultSettings ++
     ScalatraPlugin.scalatraWithJRebel ++
     Seq(giter8.ScaffoldPlugin.scaffoldSettings: _*) ++
+    seq(org.flywaydb.sbt.FlywayPlugin.flywaySettings: _*) ++
     Seq(
-      organization := Organization,
-      name         := Name,
-      version      := Version,
-      scalaVersion := ScalaVersion,
-      resolvers    += Classpaths.typesafeReleases,
+      organization     := Organization,
+      name             := Name,
+      version          := Version,
+      scalaVersion     := ScalaVersion,
+      resolvers        += Classpaths.typesafeReleases,
+      flywayUrl        := "jdbc:mysql://localhost:3306/$name;format="snake"$_development",
+      flywayUser       := "root",
+      flywayPassword   := "",
       libraryDependencies ++= Seq(
         "org.scalatra"            %% "scalatra"             % ScalatraVersion,
         "org.scalatra"            %% "scalatra-scalate"     % ScalatraVersion,
