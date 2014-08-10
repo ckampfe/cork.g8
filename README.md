@@ -95,14 +95,3 @@ curl -X DELETE localhost:8080/smiles/1
 ```
 
 Note: To use the example API, you will also need to set up a MySQL database called `smiles`. Alternatively, you can opt to use the the H2 in-memory datastore, adjusting the code commenting in `com/cork/config/DatabaseConnector.scala`.
-
-#### Creating an API manually ####
-
-You can also create an API manually. To create an API by hand:
-
-1. Add a controller and a corresponding model.
-  - Controllers live in `com.cork.app.controllers` and look like the example `SmilesController.scala`
-  - Models live in `com.cork.app.models` and look like the example `Smiles.scala`
-
-2. Link up your enpoint in `ScalatraBootstrap.scala`
-  - The example endpoint is `context.mount(new SmilesController, "/smiles/*")`.
