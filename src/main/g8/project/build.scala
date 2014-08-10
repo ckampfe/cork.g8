@@ -6,7 +6,7 @@ import com.mojolly.scalate.ScalatePlugin._
 import org.flywaydb.sbt.FlywayPlugin._
 import ScalateKeys._
 
-object CorkBuild extends Build {
+object $name;format="Camel"$Build extends Build {
   val Organization    = "$organization$"
   val Name            = "$name$"
   val Version         = "$version$"
