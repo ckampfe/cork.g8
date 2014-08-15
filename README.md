@@ -48,17 +48,22 @@ Make sure to hook up your API in `src/main/scala/ScalatraBootstrap.scala` like t
 ### Migrate the database ###
 
 Cork uses [Flyway](http://flywaydb.org/) to manage database migrations. Before running the initial migration to create your API table, make sure your database is properly set up.
-Flyway expects to connect to a database with a name that takes the form of `$SERVICE_NAME_development`. As an example, This may look like `awesome_service_development` (you can always modify this form -- and your database URL -- in `build.scala`).
+Flyway expects to connect to a database with a name that takes the form of `$SERVICE_NAME_development`. As an example, This may look like `awesome_service_development` (you can modify this form -- and your database URL -- in `Environment.scala` and `application.conf`).
 
-When you've created your database, run the generated migration by entering `flywayMigrate` in the `sbt` console.
+Migrations will run when you start your application.
+
 
 ### Creating your own database migrations ###
 
 Creating your own migrations is easy: they're just SQL. Create your migration in `src/main/resources/db/migration`, following the form of `VN+1__DoSomethingToSchema.sql`, where `N` is the number of your most recent migration.
 
-If something goes wrong (invalid SQL syntax, etc.), just run `flywayRepair` in `sbt`, fix your error, and re-run `flywayMigrate`.
-
 You can access the Flyway documentation [here](http://flywaydb.org/documentation/).
+
+### Configuration ###
+
+Cork uses [Typesafe's Config](https://github.com/typesafehub/config), so any
+environment configurations should live in `application.conf`. You should make
+these available to your application in `Environment.scala`.
 
 
 ## Included enpoints ##
