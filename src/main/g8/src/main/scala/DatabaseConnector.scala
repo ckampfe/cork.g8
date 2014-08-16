@@ -1,29 +1,35 @@
-package com.$name;format="snake"$.config
+package databaseConnector
 
 import scalikejdbc._
 import javax.sql.DataSource
 import com.zaxxer.hikari._
+import environment._
 
 trait DatabaseConnector {
+  case class InvalidDatabaseAdapterException(message: String) extends Exception(message)
   // set up HikariCP connection pool
   val dataSource: DataSource = {
     val ds = new HikariDataSource()
-    val dataSourceClassName = "com.mysql.jdbc.jdbc2.optional.MysqlDataSource"
+    val dataSourceClassName = Env.Db.adapter match {
+      case "mysql"      => "com.mysql.jdbc.jdbc2.optional.MysqlDataSource"
+      case "h2"         => "org.h2.jdbcx.JdbcDataSource"
+      case "postgresql" => "org.postgresql.ds.PGSimpleDataSource"
+      case _            => throw new InvalidDatabaseAdapterException("you must supply a valid database adapter")
+    }
 
     // https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing
     ds.setMaximumPoolSize(12)
     ds.setDataSourceClassName(dataSourceClassName)
-    ds.addDataSourceProperty("serverName", "localhost")
-    ds.addDataSourceProperty("databaseName", "$name;format="snake"$_development")
-    ds.addDataSourceProperty("port", "3306")
-    ds.addDataSourceProperty("user", "root")
-    ds.addDataSourceProperty("password", "")
+    ds.addDataSourceProperty("serverName",   Env.Db.host)
+    ds.addDataSourceProperty("databaseName", Env.Db.name)
+    ds.addDataSourceProperty("port",         Env.Db.port)
+    ds.addDataSourceProperty("user",         Env.Db.user)
+    ds.addDataSourceProperty("password",     Env.Db.password)
     ds
   }
 
   // and initialize it
   ConnectionPool.singleton(new DataSourceConnectionPool(dataSource))
-  // ConnectionPool.singleton("jdbc:mysql://localhost:3306/scalatra_test", "root", "")
 
   /* H2 in-memory datastore, great for testing */
   // Class.forName("org.h2.Driver")
