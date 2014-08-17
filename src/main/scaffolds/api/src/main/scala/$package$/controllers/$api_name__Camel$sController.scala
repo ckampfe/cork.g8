@@ -15,6 +15,7 @@ import scala.concurrent.{ExecutionContext, Future, Promise}
 
 class $api_name;format="Camel"$sController(system: ActorSystem)
   extends ScalatraServlet
+  with MethodOverride
   with JacksonJsonSupport
   with FutureSupport {
   // Sets up automatic case class to JSON output serialization, required by

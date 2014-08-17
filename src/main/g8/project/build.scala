@@ -24,7 +24,7 @@ object $name;format="Camel"$Build extends Build {
       resolvers        += Classpaths.typesafeReleases,
       libraryDependencies ++= Seq(
         "org.scalatra"            %% "scalatra"             % ScalatraVersion,
-        "org.scalatra"            %% "scalatra-specs2"      % ScalatraVersion % "test",
+        "org.scalatest"           %% "scalatest"            % "2.2.+" % "test",
         "ch.qos.logback"           % "logback-classic"      % "1.0.6" % "runtime",
         "org.scalatra"            %% "scalatra-json"        % "2.3.0",
         "org.json4s"              %% "json4s-jackson"       % "3.2.10",
