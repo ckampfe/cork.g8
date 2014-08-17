@@ -2,8 +2,8 @@ import _root_.akka.actor.{Props, ActorSystem}
 import $package$._
 import org.scalatra._
 import javax.servlet.ServletContext
-import environment._
-import databaseConnector._
+import environment.Env
+import environment.DatabaseConnector
 import org.flywaydb.core.Flyway
 
 class ScalatraBootstrap extends LifeCycle with DatabaseConnector {

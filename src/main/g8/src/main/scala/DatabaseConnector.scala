@@ -1,9 +1,9 @@
-package databaseConnector
+package environment
 
 import scalikejdbc._
 import javax.sql.DataSource
 import com.zaxxer.hikari._
-import environment._
+import environment.Env
 
 trait DatabaseConnector {
   case class InvalidDatabaseAdapterException(message: String) extends Exception(message)
