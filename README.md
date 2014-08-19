@@ -63,7 +63,7 @@ You can access the Flyway documentation [here](http://flywaydb.org/documentation
 
 Cork uses [Typesafe's Config](https://github.com/typesafehub/config), so any
 environment configurations should live in `application.conf`. You should make
-these available to your application in `Environment.scala`.
+these available to your application in `Env.scala`.
 
 
 ## Included enpoints ##
