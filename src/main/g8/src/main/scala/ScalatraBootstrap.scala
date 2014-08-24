@@ -19,7 +19,7 @@ class ScalatraBootstrap extends LifeCycle with DatabaseConnector {
   /* mount routes */
   override def init(context: ServletContext) {
     // EXAMPLE ROUTE:
-    context.mount(new SmilesController(actorSystem), "/smiles/*")
+    context.mount(new YoApi(actorSystem), "/yos/*")
   }
 
   /* destroy akka actors on shutdown */
