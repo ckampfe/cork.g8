@@ -43,7 +43,7 @@ In the sbt console, compile your project and start the servlet. The last line wi
 Follow the prompts, and marvel at your new CRUD API model, controller and database migration!
 
 Make sure to hook up your API in `src/main/scala/ScalatraBootstrap.scala` like this:
-`context.mount(new SmilesController(system), "/smiles/*")`.
+`context.mount(new BooksController(system), "/books/*")`.
 
 ### Migrate the database ###
 
@@ -68,35 +68,10 @@ these available to your application in `Environment.scala`.
 
 ## Included enpoints ##
 
-The interface for generated APIs (as well as the included example API) is as you would expect:
+The interface for generated APIs follows RESTful conventions. For an API serving `Book` objects Cork will generate:
 
-#### Get all smiles
-```sh
-curl -X GET localhost:8080/smiles
-```
-
-#### Get a smile
-```sh
-curl -X GET localhost:8080/smiles/1
-```
-
-#### Create a smile
-```sh
-curl -X POST localhost:8080/smiles \
--d kind="smirk" \
--d size="massive"
-```
-
-#### Update a smile
-```sh
-curl -X PUT localhost:8080/smiles/1 \
--d kind="smirk" \
--d size="tiny"
-```
-
-#### Destroy a smile
-```sh
-curl -X DELETE localhost:8080/smiles/1
-```
-
-Note: To use the example API, you will also need to set up a MySQL database called `smiles`. Alternatively, you can opt to use the the H2 in-memory datastore, adjusting the code commenting in `com/cork/config/DatabaseConnector.scala`.
+- `GET /books`
+- `GET /books/1`
+- `POST /books`
+- `PUT /books/1`
+- `DELETE /books/1`
