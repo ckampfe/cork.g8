@@ -13,7 +13,7 @@ import org.scalatra.FutureSupport
 import scala.concurrent.{ExecutionContext, Future, Promise}
 
 
-class YosController(system: ActorSystem)
+class YoApi(system: ActorSystem)
   extends ScalatraServlet
   with MethodOverride
   with JacksonJsonSupport
