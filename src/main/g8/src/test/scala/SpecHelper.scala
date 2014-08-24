@@ -1,14 +1,12 @@
 package $package$
 
-import org.scalatest._
+import org.scalatra.test.scalatest._
+import org.scalatest.FunSuiteLike
 import com.typesafe.config._
 import environment._
 
-abstract class SpecBase extends FunSpec
-  with Matchers
-  with OptionValues
-  with Inside
-  with Inspectors
+abstract class SpecBase extends ScalatraSuite
+  with FunSuiteLike
   with DatabaseConnector
 {
   environment.Env.Config = ConfigFactory.load("application-test")
