@@ -13,7 +13,7 @@ import org.scalatra.FutureSupport
 import scala.concurrent.{ExecutionContext, Future, Promise}
 
 
-class $api_name;format="Camel"$sController(system: ActorSystem)
+class $api_name;format="Camel"$Api(system: ActorSystem)
   extends ScalatraServlet
   with MethodOverride
   with JacksonJsonSupport
@@ -34,7 +34,7 @@ class $api_name;format="Camel"$sController(system: ActorSystem)
   get("/?") { // show all $api_name;format="Camel"$s
     new AsyncResult { val is =
       Future {
-        val $api_name;format="camel"$sCollection = $api_name$s.getAll
+        val $api_name;format="camel"$sCollection = $api_name$.getAll
         formatResponse($api_name;format="camel"$sCollection)
       }
     }
@@ -43,7 +43,7 @@ class $api_name;format="Camel"$sController(system: ActorSystem)
   get("/:id") { // get a $api_name;format="lower"$
     new AsyncResult { val is =
       Future {
-        val $api_name;format="camel"$ = $api_name$s.getOne(params("id"))
+        val $api_name;format="camel"$ = $api_name$.getOne(params("id"))
         formatResponse($api_name;format="camel"$)
       }
     }
@@ -52,7 +52,7 @@ class $api_name;format="Camel"$sController(system: ActorSystem)
   post("/?") { // create a $api_name;format="lower"$
     new AsyncResult { val is =
       Future {
-        $api_name$s.create(params("kind"), params("size"))
+        $api_name$.create(params("kind"), params("size"))
         Created()
       }
     }
@@ -61,7 +61,7 @@ class $api_name;format="Camel"$sController(system: ActorSystem)
   put("/:id") { // update a $api_name;format="lower"$
     new AsyncResult { val is =
       Future {
-        $api_name$s.update(params)
+        $api_name$.update(params)
         Ok()
       }
     }
@@ -70,7 +70,7 @@ class $api_name;format="Camel"$sController(system: ActorSystem)
   delete("/:id") { // destroy a $api_name;format="lower"$
     new AsyncResult { val is =
       Future {
-        $api_name$s.destroy(params("id"))
+        $api_name$.destroy(params("id"))
         NoContent()
       }
     }
@@ -93,5 +93,3 @@ class $api_name;format="Camel"$sController(system: ActorSystem)
     }
   }
 }
-
-
