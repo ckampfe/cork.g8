@@ -48,7 +48,11 @@ Make sure to hook up your API in `src/main/scala/ScalatraBootstrap.scala` like t
 ### Migrate the database ###
 
 Cork uses [Flyway](http://flywaydb.org/) to manage database migrations. Before running the initial migration to create your API table, make sure your database is properly set up.
-Flyway expects to connect to a database with a name that takes the form of `$SERVICE_NAME_development`. As an example, This may look like `awesome_service_development` (you can modify this form -- and your database URL -- in `Environment.scala` and `application.conf`).
+Flyway expects to connect to a database with a name that takes the form of `$SERVICE_NAME_development`. As an example, This may look like `awesome_service_development`, which you can quickly set up like so:
+```sh
+$ mysql -uroot
+mysql> create database awesome_service_development;
+```
 
 Migrations will run when you start your application.
 
