@@ -40,11 +40,11 @@ Invoke the generator like so:
 
 Follow the prompts, and marvel at your new CRUD API router, model and database migration!
 
-Make your application aware of your API's top level route by adding `context.mount(new BookApi(system), "/books/*")` in `ScalatraBootstrap.scala` and adjusting the API class and route match the API name you provided. (Note that the `/books` route is plural, while the `BookApi` class is singular.)
+Make your application aware of your API's top level route by adding `context.mount(new BookApi(system), "/books/*")` in `ScalatraBootstrap.scala` and adjusting the API class and route to match the API name you provided. (Note that the route is plural, while the class is singular.)
 
-### Migrate the database ###
+### Set up your database ###
 
-Cork uses [Flyway](http://flywaydb.org/) to manage database migrations. Before running the initial migration to create your API table, make sure your database is properly set up. By default, Flyway expects to connect to a database with a name that takes the form of `$SERVICE_NAME_development`. If you called your API `awesome service` in the earlier prompts, your database would be called `awesome_service_development`. Create it like so:
+Cork uses [Flyway](http://flywaydb.org/) to manage database migrations. Before running the generated migration to create your API's database table, make sure your database is properly set up. By default, Cork and Flyway expect to connect to a database with a name of the form `$SERVICE_NAME_development`. If you called your API `awesome service` in the earlier prompts, your database would be called `awesome_service_development`. In MySQL we could create it like so:
 ```sh
 $ mysql -uroot
 mysql> create database awesome_service_development;
@@ -55,13 +55,18 @@ Migrations will run when you start your application.
 
 ### Start it up! ###
 
-In the sbt console, compile your project and start the servlet. The last line will watch your project, automatically recompiling code and restarting the servlet when you save changes:
+In sbt (started with `./sbt`), compile your project and start the servlet: 
 
 ```
 > container:start
+```
+Then, set sbt to automatically recompile code and restart the servlet when you save changes:
+
+```
 > ~ ;copy-resources;aux-compile
 ```
 
+That's it! Your service is now running and available on `http://localhost:8080`
 
 ### Take it for a spin ###
 
