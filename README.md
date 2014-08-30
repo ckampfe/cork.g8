@@ -40,10 +40,9 @@ In the sbt console, compile your project and start the servlet. The last line wi
 > g8-scaffold api
 ```
 
-Follow the prompts, and marvel at your new CRUD API model, controller and database migration!
+Follow the prompts, and marvel at your new CRUD API router, model and database migration!
 
-Make sure to hook up your API in `src/main/scala/ScalatraBootstrap.scala` like this:
-`context.mount(new BooksController(system), "/books/*")`.
+Make your application aware of your API's top level route by adding this line in `ScalatraBootstrap.scala` and adjusting it to match the API name you provided: `context.mount(new BookApi(system), "/books/*")`. (Note that the `/books` route is plural, while the `BookApi` class is singular.)
 
 ### Migrate the database ###
 
