@@ -40,7 +40,8 @@ Invoke the generator like so:
 
 Follow the prompts, and marvel at your new CRUD API router, model and database migration!
 
-Make your application aware of your API's top level route by adding `context.mount(new BookApi(system), "/books/*")` in `ScalatraBootstrap.scala` and adjusting the API class and route to match the API name you provided. (Note that the route is plural, while the class is singular.)
+Make your application aware of your API's top level route by adding  
+`context.mount(new BookApi(system), "/books/*")` in `ScalatraBootstrap.scala` and adjusting the API class and route to match the API name you provided. (Note that the route is plural, while the class is singular.)
 
 ### Set up your database ###
 
