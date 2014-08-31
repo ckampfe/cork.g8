@@ -1,3 +1,5 @@
+package $package$
+
 import org.scalatra._
 import scalikejdbc._, SQLInterpolation._
 import com.github.nscala_time.time.Imports._

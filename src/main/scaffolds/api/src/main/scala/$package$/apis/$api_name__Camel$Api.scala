@@ -1,3 +1,5 @@
+package $package$
+
 import org.scalatra._
 // JSON-related libraries
 import org.json4s.{DefaultFormats, Formats}
