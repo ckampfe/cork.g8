@@ -74,10 +74,10 @@ That's it! Your service is now running and available on `http://localhost:8080`
 For an API serving `Book` objects Cork will generate:
 
 - `GET /books`
-- `GET /books/1`
+- `GET /books/:id`
 - `POST /books`
-- `PUT /books/1`
-- `DELETE /books/1`
+- `PUT /books/:id`
+- `DELETE /books/:id`
 
 Curl to your heart's content.
 
