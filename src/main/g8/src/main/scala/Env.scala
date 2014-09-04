@@ -2,10 +2,8 @@ package environment
 
 import com.typesafe.config._
 
-object Env {
-  var Config = ConfigFactory.load()
-
-  lazy val env = Config.getString("$name;format="norm"$.env")
+class Env(env: String) {
+  var Config = ConfigFactory.load(env)
 
   object Db {
     lazy val adapter  = Config.getString("$name;format="norm"$.database.adapter")

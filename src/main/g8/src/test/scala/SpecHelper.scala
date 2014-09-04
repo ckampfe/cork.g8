@@ -9,5 +9,6 @@ abstract class SpecBase extends ScalatraSuite
   with FunSuiteLike
   with DatabaseConnector
 {
-  environment.Env.Config = ConfigFactory.load("application-test")
+  val env = new Env("application-test")
+  init(env)
 }

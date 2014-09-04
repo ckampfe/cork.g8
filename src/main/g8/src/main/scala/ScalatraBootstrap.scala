@@ -7,9 +7,13 @@ import environment.DatabaseConnector
 import org.flywaydb.core.Flyway
 
 class ScalatraBootstrap extends LifeCycle with DatabaseConnector {
+  /* initial database connection */
+  val env = new Env("application")
+  init(env)
+
   /* run db migrations on application start */
   val flyway = new Flyway
-  flyway.setDataSource(Env.Db.url, Env.Db.user, Env.Db.password)
+  flyway.setDataSource(env.Db.url, env.Db.user, env.Db.password)
   flyway.migrate
 
   /* initialize akka actors */
