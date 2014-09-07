@@ -2,10 +2,8 @@ package environment
 
 import com.typesafe.config._
 
-object Env {
-  var Config = ConfigFactory.load()
-
-  lazy val env = Config.getString("$name;format="norm"$.env")
+class Env(env: String) {
+  var Config = ConfigFactory.load(env)
 
   object Db {
     lazy val adapter  = Config.getString("$name;format="norm"$.database.adapter")
@@ -15,6 +13,9 @@ object Env {
     lazy val user     = Config.getString("$name;format="norm"$.database.user")
     lazy val password = Config.getString("$name;format="norm"$.database.password")
 
-    lazy val url = s"jdbc:\${adapter}://\${host}:\${port}/\${name}"
+    lazy val url = adapter match {
+      case "h2" => s"jdbc:h2:mem:\${name}"
+      case _    => s"jdbc:\${adapter}://\${host}:\${port}/\${name}"
+    }
   }
 }
