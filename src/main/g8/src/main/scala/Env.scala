@@ -13,7 +13,9 @@ class Env(env: String) {
     lazy val user     = Config.getString("$name;format="norm"$.database.user")
     lazy val password = Config.getString("$name;format="norm"$.database.password")
 
-    lazy val rdbmsUrl = s"jdbc:\${adapter}://\${host}:\${port}/\${name}"
-    lazy val h2Url    = s"jdbc:h2:mem:${name}"
+    lazy val url = adapter match {
+      case "h2" => s"jdbc:h2:mem:\${name}"
+      case _    => s"jdbc:\${adapter}://\${host}:\${port}/\${name}"
+    }
   }
 }

@@ -17,7 +17,7 @@ trait DatabaseConnector {
       env.Db.adapter match {
         case "h2" =>
           ds.setDataSourceClassName("org.h2.jdbcx.JdbcDataSource")
-          ds.addDataSourceProperty("URL",          env.Db.h2Url)
+          ds.addDataSourceProperty("URL",          env.Db.url)
           ds.addDataSourceProperty("user",         env.Db.user)
           ds.addDataSourceProperty("password",     env.Db.password)
 
@@ -48,15 +48,5 @@ trait DatabaseConnector {
 
     // ad-hoc session provider on the REPL
     implicit val session = AutoSession
-
-    sql"""
-    create table if not exists bodes (
-      id SERIAL NOT NULL PRIMARY KEY,
-      kind varchar(255),
-      size varchar(255),
-      created_at timestamp NOT NULL,
-      updated_at timestamp NOT NULL,
-    )
-    """.execute.apply()
   }
 }
