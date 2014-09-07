@@ -13,6 +13,7 @@ class Env(env: String) {
     lazy val user     = Config.getString("$name;format="norm"$.database.user")
     lazy val password = Config.getString("$name;format="norm"$.database.password")
 
-    lazy val url = s"jdbc:\${adapter}://\${host}:\${port}/\${name}"
+    lazy val rdbmsUrl = s"jdbc:\${adapter}://\${host}:\${port}/\${name}"
+    lazy val h2Url    = s"jdbc:h2:mem:${name}"
   }
 }
