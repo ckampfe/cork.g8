@@ -36,7 +36,7 @@ class YoApi(system: ActorSystem)
   get("/?") {
     new AsyncResult { val is =
       Future {
-        formatResponse(new Yo(id = 1998, greeting = "Yo! Welcome to Cork!"))
+        formatResponse(YoRepresenter(id = 1998, greeting = "Yo! Welcome to Cork!"))
       }
     }
   }

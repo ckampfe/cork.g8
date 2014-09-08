@@ -20,61 +20,65 @@ object $api_name;format="Camel"$ extends SQLSyntaxSupport[$api_name;format="Came
 
   val s = $api_name;format="Camel"$.syntax("s")
 
-  def getAll: List[Map[String, Any]] = withSQL {
+  def all(): List[$api_name;format="Camel"$Representer] = withSQL {
     select.from($api_name;format="Camel"$ as s)
   }
   .map(
-    rs => Map(
-      "id"   -> rs.long(s.resultName.id),
-      "kind" -> rs.string(s.resultName.kind),
-      "size" -> rs.string(s.resultName.size)
+    rs => $api_name;format="Camel"$Representer(
+      id   = rs.long(s.resultName.id),
+      kind = Option(rs.string(s.resultName.kind)),
+      size = Option(rs.string(s.resultName.size))
     )
-  )
-  .list()
-  .apply()
+  ).list().apply()
 
-  def getOne(id: Any): Option[Map[String, Any]] = withSQL {
+  def find(id: Any): Option[$api_name;format="Camel"$Representer] = withSQL {
     select.from($api_name;format="Camel"$ as s)
       .where.eq(s.id, id)
   }
   .map(
-    rs => Map(
-      "id"   -> rs.long(s.resultName.id),
-      "kind" -> rs.string(s.resultName.kind),
-      "size" -> rs.string(s.resultName.size)
+    rs => $api_name;format="Camel"$Representer(
+      id   = rs.long(s.resultName.id),
+      kind = Option(rs.string(s.resultName.kind)),
+      size = Option(rs.string(s.resultName.size))
     )
-  )
-  .single()
-  .apply()
+  ).single().apply()
 
-  def create(kind: String, size: String) = withSQL {
+  def create(params: Map[String, String]): $api_name;format="Camel"$Representer = {
     val c = $api_name;format="Camel"$.column
-    insert
-      .into($api_name;format="Camel"$)
-      .namedValues(
-        c.kind      -> kind,
-        c.size      -> size,
-        c.createdAt -> DateTime.now,
+    val generatedKey = withSQL {
+      insert.into($api_name;format="Camel"$)
+        .namedValues(
+          c.kind      -> params.get("kind"),
+          c.size      -> params.get("size"),
+          c.createdAt -> DateTime.now,
+          c.updatedAt -> DateTime.now
+        )
+    }.updateAndReturnGeneratedKey.apply()
+
+    $api_name;format="Camel"$Representer(
+      id   = generatedKey,
+      kind = params.get("kind"),
+      size = params.get("size")
+    )
+  }
+
+  def update(params: Map[String, String]): $api_name;format="Camel"$Representer = {
+    val c = $api_name;format="Camel"$.column
+
+    withSQL {
+      QueryDSL.update($api_name;format="Camel"$).set(
+        c.kind      -> params.getOrElse("kind", c.kind),
+        c.size      -> params.getOrElse("size", c.size),
         c.updatedAt -> DateTime.now
-      )
-  }
-  .updateAndReturnGeneratedKey
-  .apply()
+        ).where.eq(
+          $api_name;format="Camel"$.column.id, params("id")
+        )
+    }.update.apply()
 
-  def update(params: Map[String, String]) = withSQL {
-    val c = $api_name;format="Camel"$.column
-    QueryDSL.update($api_name;format="Camel"$).set(
-      c.kind      -> params("kind"),
-      c.size      -> params("size"),
-      c.updatedAt -> DateTime.now
-    ).where.eq($api_name;format="Camel"$.column.id, params("id"))
+    $api_name;format="Camel"$.find(params("id")).get
   }
-  .update()
-  .apply()
 
   def destroy(id: Any): Unit = withSQL {
     delete.from($api_name;format="Camel"$).where.eq($api_name;format="Camel"$.column.id, id)
-  }
-  .update
-  .apply()
+  }.update.apply()
 }
