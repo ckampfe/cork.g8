@@ -36,7 +36,7 @@ class $api_name;format="Camel"$Api(system: ActorSystem)
   get("/?") { // show all $api_name;format="Camel"$s
     new AsyncResult { val is =
       Future {
-        val $api_name;format="camel"$sCollection = $api_name$.getAll
+        val $api_name;format="camel"$sCollection = $api_name$.all
         formatResponse($api_name;format="camel"$sCollection)
       }
     }
@@ -45,7 +45,7 @@ class $api_name;format="Camel"$Api(system: ActorSystem)
   get("/:id") { // get a $api_name;format="lower"$
     new AsyncResult { val is =
       Future {
-        val $api_name;format="camel"$ = $api_name$.getOne(params("id"))
+        val $api_name;format="camel"$ = $api_name$.find(params("id"))
         formatResponse($api_name;format="camel"$)
       }
     }
@@ -54,8 +54,8 @@ class $api_name;format="Camel"$Api(system: ActorSystem)
   post("/?") { // create a $api_name;format="lower"$
     new AsyncResult { val is =
       Future {
-        $api_name$.create(params("kind"), params("size"))
-        Created()
+        val $api_name;format="camel"$ = $api_name$.create(params)
+        Created(formatResponse($api_name;format="camel"$))
       }
     }
   }
@@ -63,8 +63,8 @@ class $api_name;format="Camel"$Api(system: ActorSystem)
   put("/:id") { // update a $api_name;format="lower"$
     new AsyncResult { val is =
       Future {
-        $api_name$.update(params)
-        Ok()
+        val $api_name;format="camel"$ = $api_name$.update(params)
+        Ok(formatResponse($api_name;format="camel"$))
       }
     }
   }
