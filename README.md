@@ -103,10 +103,6 @@ More information about Scala on Heroku can be found [here](https://devcenter.her
 
 Read about the motivation for Cork [here](https://tech.bellycard.com/blog/rest-apis-in-scala/).
 
-### Deployment ###
-
-Heroku support is in development.
-
 ### Creating your own database migrations ###
 
 Creating your own migrations is easy: they're just SQL. Create your migration in `src/main/resources/db/migration`, following the form of `VN+1__DoSomethingToSchema.sql`, where `N` is the number of your most recent migration.
