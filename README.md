@@ -3,7 +3,8 @@
 Cork is a framework for easily building APIs in Scala, using [Scalatra](http://scalatra.org/), [ScalikeJDBC](http://scalikejdbc.org/), [HikariCP](http://brettwooldridge.github.io/HikariCP/), [Flyway](http://flywaydb.org/) and [Jetty](http://www.eclipse.org/jetty/).
 
 1. [Quickstart Guide](#quickstart-guide)
-2. [More](#more)
+2. [Deploying on Heroku](#deploying-on-heroku)
+3. [More](#more)
 
 # Quickstart Guide #
 
@@ -81,6 +82,20 @@ For an API serving `Book` objects Cork will generate:
 
 Curl to your heart's content.
 
+## Deploying on Heroku ##
+
+Cork services deploy to Heroku just like their Ruby counterparts. Create an app, commit, and `git push heroku master`.
+
+To build and run the application locally, run:
+
+```
+$ sbt compile stage
+$ foreman start
+```
+
+Cork apps are served with an embedded Jetty servlet, but [sbt-native-packager](https://github.com/sbt/sbt-native-packager) is capable of generating `.war` and `.jar` objects for future flexibility.
+
+More information about Scala on Heroku can be found [here](https://devcenter.heroku.com/articles/scala-support).
 
 ## More ##
 
