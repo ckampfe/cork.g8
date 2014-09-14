@@ -29,11 +29,10 @@ trait DatabaseConnector {
           ds.addDataSourceProperty("user",         env.Db.user)
           ds.addDataSourceProperty("password",     env.Db.password)
 
-        case "postgresql" =>
+        case "postgresql" | "postgres" =>
           ds.setDataSourceClassName("org.postgresql.ds.PGSimpleDataSource")
           ds.addDataSourceProperty("serverName",   env.Db.host)
           ds.addDataSourceProperty("databaseName", env.Db.name)
-          ds.addDataSourceProperty("port",         env.Db.port)
           ds.addDataSourceProperty("user",         env.Db.user)
           ds.addDataSourceProperty("password",     env.Db.password)
 
