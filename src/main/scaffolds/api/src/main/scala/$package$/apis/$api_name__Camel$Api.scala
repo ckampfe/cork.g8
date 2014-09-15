@@ -45,7 +45,7 @@ class $api_name;format="Camel"$Api(system: ActorSystem)
   get("/:id") { // get a $api_name;format="lower"$
     new AsyncResult { val is =
       Future {
-        val $api_name;format="camel"$ = $api_name$.find(params("id"))
+        val $api_name;format="camel"$ = $api_name$.find(params("id").toInt)
         formatResponse($api_name;format="camel"$)
       }
     }
@@ -72,7 +72,7 @@ class $api_name;format="Camel"$Api(system: ActorSystem)
   delete("/:id") { // destroy a $api_name;format="lower"$
     new AsyncResult { val is =
       Future {
-        $api_name$.destroy(params("id"))
+        $api_name$.destroy(params("id").toInt)
         NoContent()
       }
     }
