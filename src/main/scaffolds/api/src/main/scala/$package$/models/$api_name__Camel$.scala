@@ -31,7 +31,7 @@ object $api_name;format="Camel"$ extends SQLSyntaxSupport[$api_name;format="Came
     )
   ).list().apply()
 
-  def find(id: Any): Option[$api_name;format="Camel"$Representer] = withSQL {
+  def find(id: Int): Option[$api_name;format="Camel"$Representer] = withSQL {
     select.from($api_name;format="Camel"$ as s)
       .where.eq(s.id, id)
   }
@@ -71,14 +71,14 @@ object $api_name;format="Camel"$ extends SQLSyntaxSupport[$api_name;format="Came
         c.size      -> params.getOrElse("size", c.size),
         c.updatedAt -> DateTime.now
         ).where.eq(
-          $api_name;format="Camel"$.column.id, params("id")
+          $api_name;format="Camel"$.column.id, params("id").toInt
         )
     }.update.apply()
 
-    $api_name;format="Camel"$.find(params("id")).get
+    $api_name;format="Camel"$.find(params("id").toInt).get
   }
 
-  def destroy(id: Any): Unit = withSQL {
+  def destroy(id: Int): Unit = withSQL {
     delete.from($api_name;format="Camel"$).where.eq($api_name;format="Camel"$.column.id, id)
   }.update.apply()
 }
