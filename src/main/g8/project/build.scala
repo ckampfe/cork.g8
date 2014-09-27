@@ -36,7 +36,7 @@ object $name;format="Camel"$Build extends Build {
         "mysql"                    % "mysql-connector-java" % "5.1.31",
         "org.postgresql"           % "postgresql"           % "9.3-1102-jdbc41",
         "com.h2database"           % "h2"                   % "1.4.+",
-        "com.zaxxer"               % "HikariCP-java6"       % "2.0.1",
+        "com.zaxxer"               % "HikariCP"             % "2.0.1",
         "ch.qos.logback"           % "logback-classic"      % "1.1.+",
         "com.typesafe.akka"       %% "akka-actor"           % "2.3.4",
         "com.typesafe"             % "config"               % "1.2.+",
