@@ -84,9 +84,20 @@ Curl to your heart's content.
 
 ## Deploying on Heroku ##
 
-Cork services deploy to Heroku just like their Ruby counterparts. Create an app, commit, and `git push heroku master`.
+Create and deploy a Cork app to Heroku like so:
+```sh
+$ cd your/cork/project
+$ heroku create --buildpack https://github.com/ckampfe/heroku-buildpack-scala
+$ git add .
+$ git commit
+$ git push heroku master
+```
 
-To build and run the application locally, run:
+The custom buildpack makes a minor tweak to the
+default Heroku slug compilation step, dropping unnecessary compilation
+artifacts to bring base slug size down from 240MB to < 140MB.
+
+To build and run the application locally for development, run:
 
 ```
 $ sbt compile stage
