@@ -95,7 +95,8 @@ $ git push heroku master
 
 The custom buildpack makes a minor tweak to the
 default Heroku slug compilation step, dropping unnecessary compilation
-artifacts to bring base slug size down from 240MB to < 140MB.
+artifacts to bring base slug size down from >300MB to 200MB for OpenJDK 8,
+and from ~240MB to <140MB for OpenJDK 7.
 
 To build and run the application locally for development, run:
 
