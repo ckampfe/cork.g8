@@ -57,18 +57,14 @@ Migrations will run when you start your application.
 
 ### Start it up! ###
 
-In sbt (started with `./sbt`), compile your project and start the servlet: 
+Compile your project and start the servlet: 
 
 ```
-> container:start
-```
-Then, set sbt to automatically recompile code and restart the servlet when you save changes:
-
-```
-> ~ ;copy-resources;aux-compile
+$ sbt compile stage
+$ foreman start
 ```
 
-That's it! Your service is now running and available on `http://localhost:8080`
+That's it! Your service is now running and available on `http://localhost:5000`
 
 ### Take it for a spin ###
 
